@@ -1,0 +1,72 @@
+<records>
+    <record reference="187997">
+        <accountNumber>NL91RABO0315273637</accountNumber>
+        <description>Clothes for Rik King</description>
+        <startBalance>57.6</startBalance>
+        <mutation>-32.98</mutation>
+        <endBalance>24.62</endBalance>
+    </record>
+    <record reference="154270">
+        <accountNumber>NL56RABO0149876948</accountNumber>
+        <description>Candy for Peter de Vries</description>
+        <startBalance>5429</startBalance>
+        <mutation>-939</mutation>
+        <endBalance>6368</endBalance>
+    </record>
+    <record reference="162197">
+        <accountNumber>NL90ABNA0585647886</accountNumber>
+        <description>Tickets for Daniël de Vries</description>
+        <startBalance>95.03</startBalance>
+        <mutation>+48.33</mutation>
+        <endBalance>143.36</endBalance>
+    </record>
+    <record reference="129635">
+        <accountNumber>NL27SNSB0917829871</accountNumber>
+        <description>Clothes for Vincent King</description>
+        <startBalance>14.48</startBalance>
+        <mutation>+16.39</mutation>
+        <endBalance>30.87</endBalance>
+    </record>
+    <record reference="148503">
+        <accountNumber>NL93ABNA0585619023</accountNumber>
+        <description>Subscription from Willem Dekker</description>
+        <startBalance>30.54</startBalance>
+        <mutation>-13.18</mutation>
+        <endBalance>17.36</endBalance>
+    </record>
+    <record reference="163023">
+        <accountNumber>NL43AEGO0773393871</accountNumber>
+        <description>Tickets for Daniël de Vries</description>
+        <startBalance>37.79</startBalance>
+        <mutation>-40.84</mutation>
+        <endBalance>-3.05</endBalance>
+    </record>
+    <record reference="162410">
+        <accountNumber>NL69ABNA0433647324</accountNumber>
+        <description>Tickets from Jan Bakker</description>
+        <startBalance>10.1</startBalance>
+        <mutation>-0.3</mutation>
+        <endBalance>9.8</endBalance>
+    </record>
+    <record reference="112747">
+        <accountNumber>NL56RABO0149876948</accountNumber>
+        <description>Candy from Jan Dekker</description>
+        <startBalance>51.62</startBalance>
+        <mutation>-42.36</mutation>
+        <endBalance>9.26</endBalance>
+    </record>
+    <record reference="140269">
+        <accountNumber>NL43AEGO0773393871</accountNumber>
+        <description>Tickets for Vincent Dekker</description>
+        <startBalance>3980</startBalance>
+        <mutation>+1000</mutation>
+        <endBalance>4981</endBalance>
+    </record>
+    <record reference="115137">
+        <accountNumber>NL43AEGO0773393871</accountNumber>
+        <description>Flowers for Jan Theuß</description>
+        <startBalance>28.19</startBalance>
+        <mutation>+3.22</mutation>
+        <endBalance>31.41</endBalance>
+    </record>
+</records>

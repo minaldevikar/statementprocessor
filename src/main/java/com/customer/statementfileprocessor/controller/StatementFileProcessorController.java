@@ -19,12 +19,16 @@ public class StatementFileProcessorController {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementFileProcessorController.class);
 
-    @Autowired
-    private StatementFileProcessorService statementProcessorService;
 
-    @PostMapping("/")
+    private StatementFileProcessorService statementFileProcessorService;
+    @Autowired
+    public StatementFileProcessorController(StatementFileProcessorService statementFileProcessorService) {
+        this.statementFileProcessorService = statementFileProcessorService;
+    }
+
+    @PostMapping("/upload")
     public ResponseEntity<StatementFileOutput> handle(@NonNull @RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(statementProcessorService.execute(file));
+        return ResponseEntity.ok(statementFileProcessorService.execute(file));
     }
 
     @GetMapping(value = {"/error", "/{v1}/*"})
