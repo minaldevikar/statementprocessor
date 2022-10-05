@@ -12,8 +12,8 @@ public class FileProcessorFactory {
         switch (fileType) {
             case CSV:
                 return new CsvProcessor();
-            /*case XML:
-                return new XmlProcessor();*/
+            case XML:
+                return new XmlProcessor();
             default:
                 return null;
         }

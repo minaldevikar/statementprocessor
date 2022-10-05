@@ -8,5 +8,5 @@ import java.util.List;
 @Getter
 @Setter
 public class StatementFileInput {
-    private List<Record> input;
+    private List<Record> recordInputList;
 }

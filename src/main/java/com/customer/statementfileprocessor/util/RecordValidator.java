@@ -15,18 +15,18 @@ public class RecordValidator {
     }
 
     public static List<FailedRecordBean> validate(StatementFileInput input) {
-        return input.getInput()
+        return input.getRecordInputList()
                 .parallelStream()
                 .filter(record -> isReferenceNotUnique(input, record) || isEndBalanceNotCorrect(record))
                 .map(RecordValidator::createValidationResult)
                 .collect(Collectors.toList());
     }
 
-    private static boolean isReferenceNotUnique(StatementFileInput input, Record record) {
-        return Collections.frequency(input.getInput(), record) > 1;
+    public static boolean isReferenceNotUnique(StatementFileInput input, Record record) {
+        return Collections.frequency(input.getRecordInputList(), record) > 1;
     }
 
-    private static boolean isEndBalanceNotCorrect(Record record) {
+    public static boolean isEndBalanceNotCorrect(Record record) {
         return !record.getStartBalance().add(record.getMutation()).equals(record.getEndBalance());
     }
 
