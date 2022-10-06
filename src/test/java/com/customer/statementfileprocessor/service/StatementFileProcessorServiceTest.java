@@ -1,6 +1,7 @@
 package com.customer.statementfileprocessor.service;
 
 import com.customer.statementfileprocessor.bean.StatementFileOutput;
+import com.customer.statementfileprocessor.exception.DataAlreadyExistsException;
 import com.customer.statementfileprocessor.exception.InvalidFileFormatException;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +27,16 @@ public class StatementFileProcessorServiceTest {
         when(multipartFile.getContentType()).thenReturn("text/csv");
     }
 
-    @Test
+    @Test(expected = DataAlreadyExistsException.class)
     public void executeSuccess() throws IOException {
         when(multipartFile.getInputStream()).thenReturn(getClass().getResourceAsStream("/records.csv"));
-        StatementFileOutput output = service.execute(multipartFile);
+        StatementFileOutput output = service.executeStatementProcessorRequest(multipartFile);
         assertEquals(3, output.getResult().size());
     }
 
     @Test(expected = InvalidFileFormatException.class)
     public void executeFailure() throws IOException {
         when(multipartFile.getInputStream()).thenReturn(getClass().getResourceAsStream("/invalid.csv"));
-        service.execute(multipartFile);
+        service.executeStatementProcessorRequest(multipartFile);
     }
 }

@@ -27,8 +27,9 @@ public class StatementFileProcessorController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<StatementFileOutput> handle(@NonNull @RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(statementFileProcessorService.execute(file));
+    public ResponseEntity<StatementFileOutput> handleStatementProcessRequest(@NonNull @RequestParam("file") MultipartFile file) {
+        logger.info("Inside handleStatementProcessRequest");
+        return ResponseEntity.ok(statementFileProcessorService.executeStatementProcessorRequest(file));
     }
 
     @GetMapping(value = {"/error", "/{v1}/*"})

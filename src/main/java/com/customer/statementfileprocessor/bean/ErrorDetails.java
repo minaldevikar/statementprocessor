@@ -1,7 +1,12 @@
 package com.customer.statementfileprocessor.bean;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class ErrorDetails {
     private Date timestamp;
     private int statusCode;
@@ -13,22 +18,6 @@ public class ErrorDetails {
         this.statusCode = statusCode;
         this.message = message;
         this.details = details;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
     }
 
 }
