@@ -3,6 +3,7 @@ package com.customer.statementfileprocessor.util;
 import com.customer.statementfileprocessor.bean.FailedRecordBean;
 import com.customer.statementfileprocessor.bean.Record;
 import com.customer.statementfileprocessor.bean.StatementFileInput;
+import com.customer.statementfileprocessor.entity.RecordEntity;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,5 +32,16 @@ public class RecordValidator {
         failedRecordBean.setReference(record.getReference());
         failedRecordBean.setDescription(record.getDescription());
         return failedRecordBean;
+    }
+
+    public static RecordEntity presistValidResult(Record record) {
+        RecordEntity recordEntity = new RecordEntity();
+        recordEntity.setReference(record.getReference());
+        recordEntity.setEndBalance(record.getEndBalance());
+        recordEntity.setStartBalance(record.getStartBalance());
+        recordEntity.setDescription(record.getDescription());
+        recordEntity.setMutation(record.getMutation());
+        recordEntity.setAccountNumber(record.getAccountNumber());
+        return recordEntity;
     }
 }

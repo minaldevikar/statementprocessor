@@ -5,7 +5,6 @@ import com.customer.statementfileprocessor.bean.StatementFileInput;
 import com.customer.statementfileprocessor.bean.XmlRecord;
 import com.customer.statementfileprocessor.bean.XmlRecords;
 import com.customer.statementfileprocessor.exception.InvalidFileFormatException;
-import com.customer.statementfileprocessor.exception.StatementProcessorExceptionHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;

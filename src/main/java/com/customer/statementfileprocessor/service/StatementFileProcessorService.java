@@ -1,6 +1,5 @@
 package com.customer.statementfileprocessor.service;
 
-import com.customer.statementfileprocessor.bean.Record;
 import com.customer.statementfileprocessor.bean.StatementFileInput;
 import com.customer.statementfileprocessor.bean.StatementFileOutput;
 import com.customer.statementfileprocessor.entity.RecordEntity;
@@ -10,13 +9,12 @@ import com.customer.statementfileprocessor.repository.CustomerRecordRepo;
 import com.customer.statementfileprocessor.util.FileType;
 import com.customer.statementfileprocessor.util.RecordValidator;
 import com.customer.statementfileprocessor.util.ThrowingFunction;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,6 +24,7 @@ import static com.customer.statementfileprocessor.util.RecordValidator.isReferen
 
 
 @Service
+//@AllArgsConstructor
 public class StatementFileProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementFileProcessorService.class);
@@ -48,24 +47,12 @@ public class StatementFileProcessorService {
     }
 
     private void mapToRecordEntityAndSave(StatementFileInput statementFileInput){
-        logger.info("Inside mapToRecordEntity");
-         List<Record> records = statementFileInput.getRecordInputList()
+        logger.info("Inside mapToRecordEntityAndSave");
+        List<RecordEntity> records = statementFileInput.getRecordInputList()
                 .parallelStream()
-                .filter(record -> !isReferenceNotUnique(statementFileInput, record) || !isEndBalanceNotCorrect(record))
+                .filter(record -> !(isReferenceNotUnique(statementFileInput, record) || isEndBalanceNotCorrect(record)))
+                .map(RecordValidator::presistValidResult)
                 .collect(Collectors.toList());
-         saveRecord(records);
-    }
-    @Transactional
-    private void saveRecord(List<Record> recordList) {
-        try {
-            for (Record record : recordList) {
-                RecordEntity recordEntity = new RecordEntity(record.getReference(), record.getAccountNumber(), record.getStartBalance(), record.getMutation(),
-                        record.getDescription(), record.getEndBalance());
-                customerRecordRepo.save(recordEntity);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+       customerRecordRepo.saveAll(records);
     }
 }

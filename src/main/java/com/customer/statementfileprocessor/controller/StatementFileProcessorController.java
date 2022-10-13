@@ -2,7 +2,6 @@ package com.customer.statementfileprocessor.controller;
 
 import com.customer.statementfileprocessor.bean.StatementFileOutput;
 import com.customer.statementfileprocessor.exception.EndpointNotDefinedException;
-import com.customer.statementfileprocessor.exception.StatementProcessorExceptionHandler;
 import com.customer.statementfileprocessor.service.StatementFileProcessorService;
 
 import org.slf4j.Logger;
@@ -19,20 +18,20 @@ public class StatementFileProcessorController {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementFileProcessorController.class);
 
-
+    //@Autowired
     private StatementFileProcessorService statementFileProcessorService;
-    @Autowired
+
     public StatementFileProcessorController(StatementFileProcessorService statementFileProcessorService) {
         this.statementFileProcessorService = statementFileProcessorService;
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<StatementFileOutput> handleStatementProcessRequest(@NonNull @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<StatementFileOutput> handleStatementProcessRequest(@NonNull @RequestParam("file") MultipartFile file){
         logger.info("Inside handleStatementProcessRequest");
         return ResponseEntity.ok(statementFileProcessorService.executeStatementProcessorRequest(file));
     }
 
-    @GetMapping(value = {"/error", "/{v1}/*"})
+    @GetMapping(value = {"/error", "/*"})
     public ResponseEntity<?> endPointNotDefined() {
         logger.info("Inside /error");
         throw new EndpointNotDefinedException();

@@ -1,7 +1,6 @@
 package com.customer.statementfileprocessor.util;
 
 import com.customer.statementfileprocessor.exception.InvalidFileFormatException;
-import com.customer.statementfileprocessor.exception.StatementProcessorExceptionHandler;
 
 import java.util.function.Function;
 
@@ -13,7 +12,7 @@ public interface ThrowingFunction<T, R, E extends Exception> {
             try {
                 return f.apply(t);
             } catch (Exception e) {
-                throw new InvalidFileFormatException("From throwing function"); //need to chnge error msg
+                throw new InvalidFileFormatException("From throwing function"+e.getMessage());
             }
         };
     }
