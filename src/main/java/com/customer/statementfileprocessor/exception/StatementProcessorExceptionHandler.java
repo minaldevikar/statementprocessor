@@ -15,17 +15,9 @@ public class StatementProcessorExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler({RuntimeException.class,Exception.class})
     public ResponseEntity<ErrorDetails> handleGlobalException(Exception exception,                                                            WebRequest webRequest) {
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), 400, exception.getMessage(),
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), 403, exception.getMessage(),
                 webRequest.getDescription(false));
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(EndpointNotDefinedException.class)
-    public ResponseEntity<ErrorDetails> handleEndpointNotDefinedException(Exception exception,
-                                                                          WebRequest webRequest) {
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), 400, exception.getMessage(),
-                webRequest.getDescription(false));
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(InvalidFileFormatException.class)

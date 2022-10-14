@@ -10,25 +10,23 @@ import com.customer.statementfileprocessor.util.FileType;
 import com.customer.statementfileprocessor.util.RecordValidator;
 import com.customer.statementfileprocessor.util.ThrowingFunction;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.customer.statementfileprocessor.util.RecordValidator.isEndBalanceNotCorrect;
 import static com.customer.statementfileprocessor.util.RecordValidator.isReferenceNotUnique;
 
 
 @Service
-//@AllArgsConstructor
+@AllArgsConstructor
 public class StatementFileProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementFileProcessorService.class);
-    @Autowired
     private CustomerRecordRepo customerRecordRepo;
     public StatementFileOutput executeStatementProcessorRequest(MultipartFile file) {
         logger.info("Inside executeStatementProcessorRequest");
@@ -50,9 +48,9 @@ public class StatementFileProcessorService {
         logger.info("Inside mapToRecordEntityAndSave");
         List<RecordEntity> records = statementFileInput.getRecordInputList()
                 .parallelStream()
-                .filter(record -> !(isReferenceNotUnique(statementFileInput, record) || isEndBalanceNotCorrect(record)))
+                .filter(recordInput -> !(isReferenceNotUnique(statementFileInput, recordInput) || isEndBalanceNotCorrect(recordInput)))
                 .map(RecordValidator::presistValidResult)
-                .collect(Collectors.toList());
+                .toList();
        customerRecordRepo.saveAll(records);
     }
 }

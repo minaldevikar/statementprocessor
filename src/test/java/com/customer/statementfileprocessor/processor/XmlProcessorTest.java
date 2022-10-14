@@ -35,4 +35,5 @@ public class XmlProcessorTest {
         FileProcessor xmlProcessor = new XmlProcessor();
         xmlProcessor.process(getClass().getResourceAsStream("/invalid.xml"));
     }
+
 }

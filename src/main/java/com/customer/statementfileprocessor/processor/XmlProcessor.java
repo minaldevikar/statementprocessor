@@ -14,7 +14,6 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.stream.Collectors;
 
 public class XmlProcessor implements FileProcessor {
     @Override
@@ -39,18 +38,18 @@ public class XmlProcessor implements FileProcessor {
         statementFileInput.setRecordInputList(xmlRecords.getXmlRecordList()
                 .stream()
                 .map(this::mapXmlRecord)
-                .collect(Collectors.toList()));
+                .toList());
         return statementFileInput;
     }
 
     private Record mapXmlRecord(XmlRecord xmlRecord) {
-        Record record;
+        Record recordInput;
         try {
-            record = new Record(Long.parseLong(xmlRecord.getReference()),xmlRecord.getAccountNumber(),xmlRecord.getDescription(),
+            recordInput = new Record(Long.parseLong(xmlRecord.getReference()),xmlRecord.getAccountNumber(),xmlRecord.getDescription(),
                     new BigDecimal(xmlRecord.getStartBalance()),new BigDecimal(xmlRecord.getMutation()),new BigDecimal(xmlRecord.getEndBalance()));
         } catch (NumberFormatException nfe) {
             throw new InvalidFileFormatException("Can't map csv data. Please check the input");
         }
-        return record;
+        return recordInput;
     }
 }
