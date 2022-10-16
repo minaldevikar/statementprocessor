@@ -60,4 +60,5 @@ All records getting saved in CUSTOMER_RECORD table for audit purpose.
 ## Code quality
 SonarQube scan: `mvn clean verify -P sonar`
 
-SonarQube dashboard [https://sonarcloud.io/project/overview?id=minaldevikar_statementprocessor]
+SonarQube dashboard 
+https://sonarcloud.io/project/overview?id=minaldevikar_statementprocessor
