@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CustomerStatementFileProcessorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CustomerStatementFileProcessorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CustomerStatementFileProcessorApplication.class, args);
+    }
 
 }

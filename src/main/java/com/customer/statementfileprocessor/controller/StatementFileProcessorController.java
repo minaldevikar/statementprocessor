@@ -20,8 +20,9 @@ public class StatementFileProcessorController {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementFileProcessorController.class);
     private StatementFileProcessorService statementFileProcessorService;
+
     @PostMapping("/upload")
-    public ResponseEntity<StatementFileOutput> handleStatementProcessRequest(@NonNull @RequestParam("file") MultipartFile file){
+    public ResponseEntity<StatementFileOutput> handleStatementProcessRequest(@NonNull @RequestParam("file") MultipartFile file) {
         logger.info("Inside handleStatementProcessRequest");
         return ResponseEntity.ok(statementFileProcessorService.executeStatementProcessorRequest(file));
     }

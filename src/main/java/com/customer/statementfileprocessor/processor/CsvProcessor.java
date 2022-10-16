@@ -41,8 +41,8 @@ public class CsvProcessor implements FileProcessor {
     private Record mapCsvRecord(CsvRecord csvRecord) {
         Record recordInput;
         try {
-            recordInput = new Record(Long.parseLong(csvRecord.getReference()),csvRecord.getAccountNumber(),csvRecord.getDescription(),
-                    new BigDecimal(csvRecord.getStartBalance()),new BigDecimal(csvRecord.getMutation()),new BigDecimal(csvRecord.getEndBalance()));
+            recordInput = new Record(Long.parseLong(csvRecord.getReference()), csvRecord.getAccountNumber(), csvRecord.getDescription(),
+                    new BigDecimal(csvRecord.getStartBalance()), new BigDecimal(csvRecord.getMutation()), new BigDecimal(csvRecord.getEndBalance()));
         } catch (NumberFormatException nfe) {
             throw new InvalidFileFormatException("Can't map csv data. Please check the input");
         }

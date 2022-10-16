@@ -13,8 +13,8 @@ import java.util.Date;
 @ControllerAdvice
 public class StatementProcessorExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({RuntimeException.class,Exception.class})
-    public ResponseEntity<ErrorDetails> handleGlobalException(Exception exception,                                                            WebRequest webRequest) {
+    @ExceptionHandler({RuntimeException.class, Exception.class})
+    public ResponseEntity<ErrorDetails> handleGlobalException(Exception exception, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), 403, exception.getMessage(),
                 webRequest.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
@@ -22,7 +22,7 @@ public class StatementProcessorExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(InvalidFileFormatException.class)
     public ResponseEntity<ErrorDetails> handleInvalidFileFormatException(Exception exception,
-                                                                          WebRequest webRequest) {
+                                                                         WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), 400, exception.getMessage(),
                 webRequest.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);

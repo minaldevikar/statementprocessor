@@ -45,8 +45,8 @@ public class XmlProcessor implements FileProcessor {
     private Record mapXmlRecord(XmlRecord xmlRecord) {
         Record recordInput;
         try {
-            recordInput = new Record(Long.parseLong(xmlRecord.getReference()),xmlRecord.getAccountNumber(),xmlRecord.getDescription(),
-                    new BigDecimal(xmlRecord.getStartBalance()),new BigDecimal(xmlRecord.getMutation()),new BigDecimal(xmlRecord.getEndBalance()));
+            recordInput = new Record(Long.parseLong(xmlRecord.getReference()), xmlRecord.getAccountNumber(), xmlRecord.getDescription(),
+                    new BigDecimal(xmlRecord.getStartBalance()), new BigDecimal(xmlRecord.getMutation()), new BigDecimal(xmlRecord.getEndBalance()));
         } catch (NumberFormatException nfe) {
             throw new InvalidFileFormatException("Can't map csv data. Please check the input");
         }

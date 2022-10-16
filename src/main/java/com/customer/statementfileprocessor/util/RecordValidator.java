@@ -12,6 +12,7 @@ public class RecordValidator {
     private RecordValidator() {
         throw new IllegalStateException("Utility class, not meant to be instantiated");
     }
+
     public static List<FailedRecordBean> validate(StatementFileInput input) {
         return input.getRecordInputList()
                 .parallelStream()

@@ -28,6 +28,7 @@ public class StatementFileProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementFileProcessorService.class);
     private CustomerRecordRepo customerRecordRepo;
+
     public StatementFileOutput executeStatementProcessorRequest(MultipartFile file) {
         logger.info("Inside executeStatementProcessorRequest");
         StatementFileInput input = Optional.of(file)
@@ -44,13 +45,13 @@ public class StatementFileProcessorService {
         return output;
     }
 
-    private void mapToRecordEntityAndSave(StatementFileInput statementFileInput){
+    private void mapToRecordEntityAndSave(StatementFileInput statementFileInput) {
         logger.info("Inside mapToRecordEntityAndSave");
         List<RecordEntity> records = statementFileInput.getRecordInputList()
                 .parallelStream()
                 .filter(recordInput -> !(isReferenceNotUnique(statementFileInput, recordInput) || isEndBalanceNotCorrect(recordInput)))
                 .map(RecordValidator::presistValidResult)
                 .toList();
-       customerRecordRepo.saveAll(records);
+        customerRecordRepo.saveAll(records);
     }
 }

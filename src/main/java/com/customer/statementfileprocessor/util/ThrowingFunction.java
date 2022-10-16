@@ -12,7 +12,7 @@ public interface ThrowingFunction<T, R, E extends Exception> {
             try {
                 return f.apply(t);
             } catch (Exception e) {
-                throw new InvalidFileFormatException("From throwing function"+e.getMessage());
+                throw new InvalidFileFormatException("From throwing function" + e.getMessage());
             }
         };
     }

@@ -2,21 +2,14 @@ package com.customer.statementfileprocessor.service;
 
 import com.customer.statementfileprocessor.bean.StatementFileOutput;
 import com.customer.statementfileprocessor.entity.RecordEntity;
-import com.customer.statementfileprocessor.exception.DataAlreadyExistsException;
 import com.customer.statementfileprocessor.exception.InvalidFileFormatException;
 import com.customer.statementfileprocessor.repository.CustomerRecordRepo;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -25,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 
@@ -39,6 +30,7 @@ public class StatementFileProcessorServiceTest {
     private CustomerRecordRepo cust;
     @InjectMocks
     private StatementFileProcessorService service;
+
     @Before
     public void init() {
         when(multipartFile.getContentType()).thenReturn("text/csv");
@@ -57,9 +49,9 @@ public class StatementFileProcessorServiceTest {
         service.executeStatementProcessorRequest(multipartFile);
     }
 
-    private List<RecordEntity> getData(){
-        List<RecordEntity> entities =new ArrayList<>();
-        RecordEntity record1=new RecordEntity();
+    private List<RecordEntity> getData() {
+        List<RecordEntity> entities = new ArrayList<>();
+        RecordEntity record1 = new RecordEntity();
         record1.setReference(Long.parseLong("154270"));
         record1.setAccountNumber("NL56RABO0149876948");
         record1.setDescription("Candy for Peter de Vries");
