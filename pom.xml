@@ -5,7 +5,7 @@
 
     <groupId>com.statementprocessor</groupId>
     <artifactId>customer-statement-file-processor</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>customer-statement-file-processor</name>
     <description>Monthly customer statement file processor</description>
     <packaging>jar</packaging>
